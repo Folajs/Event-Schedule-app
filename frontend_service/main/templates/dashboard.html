@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Dashboard | Event Scheduler{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="page-title">Dashboard</h2>
+  <p>Welcome, {{ user.username }}!</p>
+
+  <div class="dashboard-actions">
+    <a href="{% url 'event_list' %}" class="btn secondary">View Events</a>
+    <a href="{% url 'rsvp_list' %}" class="btn secondary">My RSVPs</a>
+    <a href="{% url 'profile' %}" class="btn secondary">Profile</a>
+  </div>
+</div>
+{% endblock %}

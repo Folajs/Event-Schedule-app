@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}RSVPs | Event Scheduler{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="page-title">My RSVPs</h2>
+  <ul id="rsvp-list" class="data-list"></ul>
+</div>
+
+
+<script src="{% static 'js/rsvps.js' %}"></script>
+{% endblock %}

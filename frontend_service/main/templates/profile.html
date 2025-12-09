@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Profile | Event Scheduler{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="page-title">My Profile</h2>
+  <ul class="profile-info">
+    <li><strong>Username:</strong> {{ user.username }}</li>
+    <li><strong>Hash Password:</strong> {{ user.password }}</li>
+  </ul>
+</div>
+{% endblock %}

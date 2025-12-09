@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login | Event Scheduler{% endblock %}
+
+{% block content %}
+<div class="container form-container">
+  <h2 class="form-title">Login</h2>
+  <form id="login-form" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit" class="btn primary">Login</button>
+  </form>
+  <p class="form-switch">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+</div>
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock %}

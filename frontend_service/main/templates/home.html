@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home | Event Scheduler{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="page-title">Welcome to Event Scheduler</h1>
+  <p class="lead-text">
+    Organize and track your events and RSVPs with ease.
+  </p>
+
+  <div class="home-buttons">
+    {% if user.is_authenticated %}
+      <a href="{% url 'dashboard' %}" class="btn primary">Go to Dashboard</a>
+    {% else %}
+      <a href="{% url 'login' %}" class="btn primary">Login</a>
+      <a href="{% url 'register' %}" class="btn secondary">Register</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

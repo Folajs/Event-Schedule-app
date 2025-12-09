@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Events | Event Scheduler{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="page-title">All Events</h2>
+  <ul id="event-list" class="data-list"></ul>
+</div>
+
+<!-- Event Modal -->
+<div id="event-modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeEventModal()">&times;</span>
+    <form id="event-form">
+      <label>Title:</label><input type="text" id="title" required>
+      <label>Description:</label><textarea id="description" required></textarea>
+      <label>Location:</label><input type="text" id="location" required>
+      <label>Start Time:</label><input type="datetime-local" id="start_time" required>
+      <label>End Time:</label><input type="datetime-local" id="end_time" required>
+      <button type="submit" class="btn primary">Create Event</button>
+    </form>
+  </div>
+</div>
+
+<!-- <button onclick="openEventModal()" class="btn primary">Add Event</button> -->
+<script src="{% static 'js/events.js' %}"></script>
+{% endblock %}
