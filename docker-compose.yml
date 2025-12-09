@@ -1,0 +1,62 @@
+version: '3.9'
+
+services:
+  frontend_service:
+    build: ./frontend_service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - auth_service
+      - event_service
+      - rsvp_service
+    networks:
+      - eventnet
+    volumes:
+      - ./frontend_service:/code
+
+  auth_service:
+    build: ./auth_service
+    ports:
+      - "8001:8001"
+    networks:
+      - eventnet
+    volumes:
+      - ./auth_service:/code
+
+  event_service:
+    build: ./event_service
+    ports:
+      - "8002:8002"
+    depends_on:
+      - rabbitmq
+    networks:
+      - eventnet
+    volumes:
+      - ./event_service:/code
+    environment:
+    - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
+
+  rsvp_service:
+    build: ./rsvp_service
+    ports:
+      - "8003:8003"
+    networks:
+      - eventnet
+    volumes:
+      - ./rsvp_service:/code
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"     # RabbitMQ main port (for Celery, etc.)
+      - "15672:15672"   # Web UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - eventnet
+
+networks:
+  eventnet:
+    driver: bridge
